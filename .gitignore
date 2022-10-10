@@ -46,6 +46,23 @@ AutofarmsSection:NewButton("Auto-Wagon", "Farms wagon Automatically and die to s
         end           
 end)
 
+AutofarmsSection:NewButton("Hand-Demon", "Autofarms", function()
+    while( true )
+    do
+    local Mob = workspace.Mobs["Final_Selection"]["Hand Demon"] -- pretend this is a path to a real mob model, with a humanoid and body
+    local Body = workspace.Mobs["Final_Selection"]["Hand Demon"].PrimaryPart -- this will get the primary part of the model, more info here: https://developer.roblox.com/en-us/api-reference/property/Model/PrimaryPart
+    local BodyCFrame = Body.CFrame -- the CFrame of the mob's body
+    
+    -- here is the teleport, we change the player's humanoidrootpart CFrame to our desired CFrame (avoid using position as it messes with your character's welds)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = BodyCFrame - BodyCFrame.LookVector * 3
+    
+    -- this will teleport you 3 studs behind the mob on the Z axis (the Z axis may not always be the one the mob is facing forwards with, mess around with this a bit to find out which axis is correct)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = BodyCFrame:ToWorldSpace(CFrame.new(0, 0, 8))
+    if game.Workspace.Mobs["Final_Selection"]["Hand Demon"].Humanoid.Health == 0 then wait(0.1) mob:Destroy() break; end -- IF THE MOB IS DEAD THEN JUST DESTROY IT FOR FASTER FARMING
+    task.wait(0.07)
+    end
+end)
+
 AutofarmsSection:NewButton("Zanegutsu", "Autofarms", function()
     while( true )
     do
