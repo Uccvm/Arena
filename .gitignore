@@ -1707,17 +1707,26 @@ end)
 local Fish = Window:NewTab("Fish")
 local FishSection = Fish:NewSection("Fish")
 
+FishSection:NewButton("Auto-Collect-Fish", "Collects fish", function()
+    while true
+    do
+workspace.Debree.Ouwfish.Center["Take_Fish"].RemoteEvent:FireServer()
+workspace.Debree.Ouwfash.Center["Take_Fish"].RemoteEvent:FireServer()
+workspace.Debree.Ouwfwesh.Center["Take_Fish"].RemoteEvent:FireServer()
+        task.wait(0.5)
+    end
+end)
+
 FishSection:NewButton("Auto-Fish-Farm", "Autofarms fish", function()
+    while true
+    do
 -- (You should probably check if it's in your backpack and equip it since this code only checks if it's already equipped.)
 local LocalPlayer = game:GetService("Players").LocalPlayer
 local Character = LocalPlayer.Character
 local Fishing_Rod_Shcrip = getsenv(Character["Fishing Rod"].Fishing_Rod_Shcrip)
 
-
 -- Call function to cast instead of using remote event, this is way easier.
 Fishing_Rod_Shcrip.Start_Fishing()
-
-
 
 local LocalPlayer = game:GetService("Players").LocalPlayer
 local PlayerGui = LocalPlayer.PlayerGui
@@ -1747,11 +1756,7 @@ Fishing_Rod_Shcrip.Start_Fish_Minigame()
 wait(1)
 -- Call stop fishing function and put true in it so we say to the game that we did it but we actually didn't.
 Fishing_Rod_Shcrip.Stop_Fishing(true)
-while true do
-repeat
-    
-until 
-task.wait(0.10)
+task.wait(5)
 end
     end)
 
